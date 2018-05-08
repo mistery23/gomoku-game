@@ -1,0 +1,24 @@
+<div class="top-line">
+  <button class="btn btn-success" routerLink="/"> <i class="arrow left"></i> Back</button>
+  <div class="next-move" *ngIf="!win">Next move: <span>{{player}}</span></div>
+  <div *ngIf="win" class="win-text">
+    {{player}} win!
+  </div>
+  <button class="btn btn-danger" (click)="restartGame()">Restart</button>
+</div>
+<div class="win-btn" *ngIf="win">
+  <button class="btn btn-success" (click)="restartGame()">Again</button>
+</div>
+<div class="grid__wrapp" [ngClass]="{'win-overlay': win}">
+  <div class="grid" (click)="onClick($event)">
+    <div [@expandField] *ngFor="let row of matrix">
+        <span
+          [@expandField]
+          *ngFor="let cell of row"
+          [id]="cell.id"
+          class="cell"
+          [ngClass]="cell.class"></span>
+    </div>
+  </div>
+</div>
+
