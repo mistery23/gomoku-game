@@ -153,6 +153,29 @@ export class GameComponent implements OnInit {
     return false;
   }
 
+  checkDiagonalLeft(rowId: number, cellId: number, way = 1, count = 1) {
+    let i = rowId + way;
+    let cellI = cellId + (way === 1 ? 1 : -1);
+    for (; i <= this.matrix.length;) {
+      if (this.matrix[i] && this.matrix[i][cellI] && this.matrix[i][cellI].name === this.player) {
+        if (way === -1) {
+          i--;
+          cellI--;
+        } else {
+          i++;
+          cellI++;
+        }
+        count++;
+      } else {
+        return way === 1 ? null : this.checkDiagonalLeft(+rowId, +cellId, 1, count);
+      }
+      if (count === 5) {
+        return count;
+      }
+    }
+    return false;
+  }
+
   checkDiagonalRight(rowId: number, cellId: number, way = 1, count = 1) {
     let i = rowId + way;
     let cellI = cellId + (way === 1 ? -1 : 1);
@@ -176,26 +199,4 @@ export class GameComponent implements OnInit {
     return false;
   }
 
-  checkDiagonalLeft(rowId: number, cellId: number, way = 1, count = 1) {
-    let i = rowId + way;
-    let cellI = cellId + (way === 1 ? -1 : 1);
-    for (; i <= this.matrix.length;) {
-      if (this.matrix[i] && this.matrix[i][cellI] && this.matrix[i][cellI].name === this.player) {
-        if (way === -1) {
-          i--;
-          cellI++;
-        } else {
-          i++;
-          cellI--;
-        }
-        count++;
-      } else {
-        return way === 1 ? null : this.checkDiagonalLeft(+rowId, +cellId, 1, count);
-      }
-      if (count === 5) {
-        return count;
-      }
-    }
-    return false;
-  }
 }

@@ -7,7 +7,7 @@
   <button class="btn btn-danger" (click)="restartGame()">Restart</button>
 </div>
 <div class="win-btn" *ngIf="win">
-  <button class="btn btn-success" (click)="restartGame()">Again</button>
+  <button class="btn btn-success" (click)="restartGame()">Play one more time</button>
 </div>
 <div class="grid__wrapp" [ngClass]="{'win-overlay': win}">
   <div class="grid" (click)="onClick($event)">
