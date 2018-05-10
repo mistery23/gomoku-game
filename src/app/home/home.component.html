@@ -7,7 +7,7 @@
       <div class="form-group">
         <input formControlName="player2" type="text" placeholder="Player 2 name" class="form-control">
       </div>
-      <button class="btn btn-success" [disabled]="!form.valid" type="submit">Start</button>
+      <button class="btn btn-success" [disabled]="!form.valid || (form.value.player1 === form.value.player2)" type="submit">Start</button>
     </form>
   </div>
 </div>

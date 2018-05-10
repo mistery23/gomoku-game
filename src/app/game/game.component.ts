@@ -43,7 +43,7 @@ export class GameComponent implements OnInit {
   ngOnInit() {
     this.route.queryParams
       .subscribe(params => {
-        if (params.player1 && params.player2) {
+        if (params.player1 && params.player2 && params.player1 !== params.player2) {
           this.player1 = params.player1;
           this.player2 = params.player2;
           this.player = this.player1;
